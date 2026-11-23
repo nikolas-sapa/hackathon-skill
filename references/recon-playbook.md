@@ -20,6 +20,21 @@ Feed suspicious clauses into `recon.py` `requirements` — it flags them. Watch 
 - **Required repo topic tags** — some sponsors auto-DQ entries missing their tag.
 - **Pre-existing code rules** — what counts (boilerplate? libraries? last month's prototype?).
 
+## Sponsor-prize EV (which lane to actually chase)
+
+Score each prize on fit / effort / competition / reward — not brand name:
+
+- **Fit** — does your idea need their tech anyway? (free points vs forced integration)
+- **Effort** — "use our API" is hours; "build a full X" is the event. A near-free domain-name prize is still a prize.
+- **Competition** — grand prize fields everyone; a niche sponsor track fields dozens. Most podium spots are category prizes.
+- **Reward** — credits < cash < interview/contract < "this becomes a product".
+
+**Track → sponsor pain mapping:** each prize track is a business unit's shopping list. A submission that solves *their* problem (they wrote the track to get it) outscores generic technical flex. Recon the sponsor's product, not just their API.
+
+## What judges check in the first 20 seconds
+
+Leaked judging portals show the pre-score screen: track match, repo/video/presentation links present, flags for duplicate submission and localhost-only demo. Nail the mechanical layer before anything creative — missing links and localhost URLs get flagged before a human forms an opinion.
+
 ## Sources
 
 - Devpost/DoraHacks/lablab event page + previous editions' galleries
@@ -27,6 +42,7 @@ Feed suspicious clauses into `recon.py` `requirements` — it flags them. Watch 
 - Sponsor docs pages (does the API actually exist and work?)
 - Judges' recent talks/posts — what they've praised publicly is what they'll reward
 - Organizer Discord/Slack — rules clarifications others already asked
+- Devpost galleries return raw JSON to non-browser user agents — cheap structured feed of past winners for `recon.py`
 
 ## Output
 

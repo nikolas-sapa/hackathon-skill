@@ -68,6 +68,10 @@ def main():
         flags.append("no past winners analyzed — find last edition's top 3 on Devpost")
     if any("must" in r.lower() for r in reqs):
         flags.append("hard requirements present — wire them into check.py")
+    n_prizes = sum(1 for s in sponsors if s.get("prize"))
+    if n_prizes >= 2:
+        flags.append(f"{n_prizes} prize lanes — most podium spots are category prizes; "
+                     "target the softest lane, not only the crown")
 
     # IP/rules scan over requirement text.
     ip_flags = []
@@ -110,6 +114,8 @@ def main():
         "rules": [
             "Optimize for the dominant judge type, but keep the demo legible to all.",
             "A sponsor prize with an API is usually the smallest field — evaluate it before grand prize.",
+            "Each prize track maps to a sponsor's own pain — solving their problem outscores technical flex.",
+            "Displayed rubric weights can be decorative — past winners + judge types are the real weights.",
             "Patterns in past winners are the real rubric; the published one is a summary of them.",
         ],
     }, brief="--json-brief" in sys.argv)

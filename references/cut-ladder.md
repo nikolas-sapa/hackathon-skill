@@ -14,4 +14,5 @@ When `scope.py` says you're over budget, cut in this order. Each rung is a place
 
 - The 90-second demo path, cold-start to working screen.
 - Whatever makes the rubric's top-weighted criterion visible.
+- **Any feature that is the SOLE claimant of a rubric criterion.** Cut its siblings first — zeroing a whole criterion loses more points than a weaker showing in the covered ones. Check coverage before every cut.
 - The submission buffer. `deadline.py` will scream at you; listen.

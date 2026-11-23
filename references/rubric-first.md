@@ -22,6 +22,11 @@ If `check.py` reports `rubric` missing, assume the standard weighting used acros
 
 Optimize for demo + technical, because impact and pitch are both scored *through the demo*.
 
+## The two dirty secrets of judging
+
+- **Displayed weights can be decorative.** Leaked judging portals show some events average raw criterion scores and ignore the published weights entirely. Optimize for the weighting AND for being visibly strong in the top criteria — don't bet the entry on a printed 5% edge.
+- **Dominance beats balance.** Judges score by gut + internal consistency, and most scores cluster mid-range. Being memorably #1 in one criterion outperforms being 3.5/5 everywhere — pick your spike criterion and make it undeniable.
+
 ## Sponsor tracks
 
 If `check.py` reports sponsor APIs, treat each as a sub-rubric:

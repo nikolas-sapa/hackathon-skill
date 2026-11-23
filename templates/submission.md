@@ -28,6 +28,19 @@ Copy into the submission form; fill the [brackets]. Required fields come from `c
 ## What's next
 [The single feature that unlocks the next user. Not a roadmap.]
 
+## Built during this hackathon
+- `[file/path]` — [what it does]
+- `[file/path]` — [what it does]
+
+## Pre-existing work used (disclosed per rules)
+- `[lib/path]` — [what it is, why it's allowed]
+- Sponsor SDKs/libraries: [list, unmodified]
+
+## Claims → evidence
+| Claim | Proof |
+|---|---|
+| [claim in the text above] | [file / test / video timestamp] |
+
 ## Links
 - Demo video: [url — check with verify.py --video]
 - Live: [url — check with verify.py --url]

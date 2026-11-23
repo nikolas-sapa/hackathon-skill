@@ -22,9 +22,9 @@
 | `scope` | "10 features, 8 hours left — what survives?" |
 | `deadline` | "How much build time is actually left?" (`--watch` = live countdown ticker) |
 | `score` | "If judges scored us right now, where do we bleed points?" |
-| `verify` | "Does the URL load, the video fit the limit, the README sell it?" |
+| `verify` | "Does the URL load, the video fit the limit, the README sell it, the git history look honest?" |
 
-Plus eighteen human-written playbooks (`references/`) distilled from shipped hackathon entries and judge interviews: pre-event prep, stack choices, the recon playbook (judges, sponsors, past winners, IP scan), rubric weighting, the ideation matrix, the exact order to cut scope in, when to pivot, teammate formation + git coordination, the 90-second demo script (+ video pitch variants), demo reliability, booth/table judging, mentor extraction, the 20 judging questions + mock-panel rehearsal, the 30-minute biz case for pitch-heavy events, submission checklist, and the post-hackathon playbook. Templates in `templates/` (submission, past-winners, README, packing list, team-up post, team profile).
+Plus nineteen human-written playbooks (`references/`) distilled from shipped hackathon entries, leaked judging portals, and judge interviews: pre-event prep, stack choices, the recon playbook (judges, sponsors, past winners, IP scan), rubric weighting, the ideation matrix, the exact order to cut scope in, when to pivot, teammate formation + git coordination, the 90-second demo script (+ video pitch variants), demo reliability, booth/table judging, mentor extraction, the 20 judging questions + mock-panel rehearsal, the 30-minute biz case for pitch-heavy events, the integrity audit (survive the winner-screening cheating check), submission checklist, and the post-hackathon playbook. Templates in `templates/` (submission, past-winners, README, packing list, team-up post, team profile).
 
 ## Install
 

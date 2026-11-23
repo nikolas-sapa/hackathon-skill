@@ -6,10 +6,13 @@ Usage:
                     [--video demo.mp4] [--max-video-min 3]
 
 Checks: URL responds 200 (via urllib, 10s timeout), README exists and is
-non-trivial, video duration (ffprobe if available, else size sanity).
+non-trivial, video duration (ffprobe if available, else size sanity),
+and optionally git integrity (--repo PATH [--end ISO]) — the flags
+organizers run on winners (giant initial commit, post-deadline pushes).
 Each check reports pass/warn/fail. Exit 1 on any fail.
 """
 
+import datetime
 import json
 import shutil
 import subprocess
@@ -83,6 +86,43 @@ def check_video(path, max_min):
             "detail": f"ffprobe unavailable; file is {mb:.0f}MB — verify duration manually"}
 
 
+def check_git(repo, end_iso):
+    """Integrity flags organizers check on winners (see references/integrity.md)."""
+    try:
+        log = subprocess.run(
+            ["git", "-C", repo, "log", "--format=%aI", "--reverse"],
+            capture_output=True, text=True, timeout=10)
+        if log.returncode != 0:
+            return {"check": "git", "result": "warn",
+                    "detail": f"not a git repo or git failed: {log.stderr.strip()[:80]}"}
+        commits = [c for c in log.stdout.splitlines() if c.strip()]
+        if not commits:
+            return {"check": "git", "result": "warn",
+                    "detail": "no commits — commit progressively; your history is the 'built here' alibi"}
+        if len(commits) == 1:
+            files = subprocess.run(
+                ["git", "-C", repo, "show", "--name-only", "--format=", "HEAD"],
+                capture_output=True, text=True).stdout.split()
+            return {"check": "git", "result": "warn",
+                    "detail": (f"one giant commit ({len(files)} files) — looks like "
+                               "pre-built work imported at hour 1; organizers flag this")}
+        if end_iso:
+            end = datetime.datetime.fromisoformat(end_iso.replace("Z", "+00:00"))
+            if end.tzinfo is None:
+                end = end.replace(tzinfo=datetime.timezone.utc)
+            late = [c for c in commits
+                    if datetime.datetime.fromisoformat(c) > end]
+            if late:
+                return {"check": "git", "result": "warn",
+                        "detail": (f"{len(late)} commit(s) after deadline — judges diff "
+                                   "timestamps; freeze at submit, polish on a branch")}
+        return {"check": "git", "result": "pass",
+                "detail": f"{len(commits)} commits — progressive history looks honest"}
+    except Exception as e:
+        return {"check": "git", "result": "warn",
+                "detail": f"git check skipped: {e}"}
+
+
 def main():
     args = sys.argv
 
@@ -95,6 +135,7 @@ def main():
         return args[i + 1]
 
     url, readme, video = arg("--url"), arg("--readme", "README.md"), arg("--video")
+    repo, end = arg("--repo"), arg("--end")
     try:
         max_min = float(arg("--max-video-min", 3))
     except (TypeError, ValueError):
@@ -106,6 +147,8 @@ def main():
     checks.append(check_readme(readme))
     if video:
         checks.append(check_video(video, max_min))
+    if repo:
+        checks.append(check_git(repo, end))
 
     fails = [c for c in checks if c["result"] == "fail"]
     warns = [c for c in checks if c["result"] == "warn"]

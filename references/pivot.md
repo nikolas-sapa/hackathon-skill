@@ -21,3 +21,12 @@ A pivot that works beats a sunk-cost idea that demos as smoke.
 2. **Pivot toward the demo, not away from the tech.** Pick the version with the most visible result, even if technically simpler.
 3. **Announce it as a cut, not a failure.** "We're shipping the map view, not the routing engine" — teams spiral when pivots feel like defeat.
 4. **Update `plan.py` output once.** Re-run the plan with remaining hours; do not re-plan more than once.
+
+## The late-rubric pivot (published after the event starts)
+
+Some events release the rubric mid-event. If it contradicts your build, you get a 90-minute realignment — not a rewrite:
+
+1. Re-map what you have against the new weights; find which criterion you're now missing.
+2. Re-route the demo script and submission text first — re-narrating existing work is the cheapest pivot there is.
+3. Re-weight `scope.py` candidates and cut against the NEW top criterion, preserving coverage (`cut-ladder.md`).
+4. Only touch code if a criterion has zero coverage and the build can't fake it in the demo.

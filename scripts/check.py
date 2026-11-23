@@ -24,6 +24,7 @@ OPTIONAL = [
     ("theme", "No theme recorded — check the brief again; building off-theme is a common DQ."),
     ("judges", "Judge names unknown — their backgrounds tell you what 'impressive' means to them."),
     ("attribution", "No 'built vs used' attribution noted — judges and AI-hack rules increasingly require it; write it into README + submission."),
+    ("prior_work", "No prior-work disclosure noted — undeclared pre-existing code is a knockout flag at winner screening; see references/integrity.md."),
 ]
 
 

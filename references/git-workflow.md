@@ -10,6 +10,8 @@
 
 Open issues for the demo-path tasks only ("live map renders", "video recorded"), one line each. Close = it works, not "code written". If an issue survives 2 standups, it's a scope problem — run `scope.py`.
 
+Multi-agent teams: pin **Issue #1 as shared state** — plan, cuts, who's on what, current risks. Humans and agents both read/write it; it's the cheapest coordination layer that survives context resets.
+
 ## Comments and handoffs
 
 - Write PR/commit messages for the teammate reading them at 3am: "map renders, markers not wired" not "progress".

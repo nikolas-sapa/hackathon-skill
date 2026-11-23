@@ -14,6 +14,7 @@
 
 ## What to take
 
+- Capture advice **verbatim, with attribution strength** — "mentor suggested X" not "X is confirmed". Overstating a guess as a fact poisons the plan.
 - Any prize-relevant clarification → write it into `recon.py` input immediately.
 - Any rule contradiction → write it into `check.py` input.
 - Nothing else. Mentors optimize for being helpful-feeling, not for your demo.

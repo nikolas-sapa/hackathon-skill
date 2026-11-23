@@ -47,3 +47,7 @@ python3 scripts/scope.py --json '{"hours_left":10,"features":[
 ## License
 
 MIT
+
+## Why agents win hackathons with this
+
+Left alone, an agent spends hour 1 picking a stack, hour 6 on auth, and hour 47 discovering the submission needs a video. This skill front-loads the decisions humans learned the hard way: decode the rubric first, cap ideation, spike only the risk, and protect the submission buffer.

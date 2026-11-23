@@ -8,6 +8,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const version = JSON.parse(readFileSync(join(root, "package.json"), "utf8")).version;
 for (const m of [
   ".claude-plugin/plugin.json",
+  ".codex-plugin/plugin.json",
   ".cursor-plugin/plugin.json",
   ".grok-plugin/plugin.json",
   "gemini-extension.json",

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """MCP server exposing hackathon-skill tools over stdio JSON-RPC.
 
-Tools: plan, scope, deadline, check — same JSON payloads as the CLI scripts.
+Tools: plan, scope, deadline, check, recon, idea, score — same JSON payloads
+as the CLI scripts.
 Run: python3 mcp/server.py
 """
 
@@ -69,6 +70,11 @@ TOOLS = {
 
 
 def run_tool(name, args):
+    def err(text):
+        return {"content": [{"type": "text", "text": text}], "isError": True}
+
+    if name not in TOOLS:
+        return err(f"unknown tool: {name}")
     script = SCRIPTS / f"{name}.py"
     if name in ("plan", "deadline"):
         cmd = [sys.executable, str(script)]
@@ -76,9 +82,12 @@ def run_tool(name, args):
             cmd += [f"--{k.replace('_','-')}", str(v)]
     else:
         cmd = [sys.executable, str(script), "--json", json.dumps(args)]
-    p = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+    try:
+        p = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+    except Exception as e:
+        return err(f"{name} failed to run: {e}")
     if p.returncode != 0:
-        return {"content": [{"type": "text", "text": p.stderr or p.stdout}]}
+        return err(p.stderr or p.stdout)
     return {"content": [{"type": "text", "text": p.stdout}]}
 
 
@@ -87,14 +96,20 @@ def main():
         line = line.strip()
         if not line:
             continue
-        req = json.loads(line)
+        try:
+            req = json.loads(line)
+        except json.JSONDecodeError as e:
+            print(json.dumps({"jsonrpc": "2.0", "id": None,
+                              "error": {"code": -32700, "message": str(e)}}))
+            sys.stdout.flush()
+            continue
         rid = req.get("id")
         method = req.get("method")
 
         if method == "initialize":
             resp = {"protocolVersion": "2024-11-05",
                     "capabilities": {"tools": {}},
-                    "serverInfo": {"name": "hackathon-skill", "version": "0.1.0"}}
+                    "serverInfo": {"name": "hackathon-skill", "version": "0.2.0"}}
         elif method == "tools/list":
             resp = {"tools": [{"name": n, **t} for n, t in TOOLS.items()]}
         elif method == "tools/call":
@@ -103,7 +118,12 @@ def main():
         elif method == "ping":
             resp = {}
         else:
-            resp = {"error": {"code": -32601, "message": f"unknown method {method}"}}
+            if rid is not None:
+                print(json.dumps({"jsonrpc": "2.0", "id": rid,
+                                  "error": {"code": -32601,
+                                            "message": f"unknown method {method}"}}))
+                sys.stdout.flush()
+            continue
 
         if rid is not None:
             print(json.dumps({"jsonrpc": "2.0", "id": rid, "result": resp}))

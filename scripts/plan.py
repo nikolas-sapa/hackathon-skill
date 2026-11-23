@@ -34,24 +34,31 @@ BLOCKS = [
 
 def main():
     data = read_json_arg(sys.argv) or {}
+    if not isinstance(data, dict):
+        fail("payload must be a JSON object")
     args = sys.argv
 
     def arg(name, default=None):
         if name in args:
-            return args[args.index(name) + 1]
+            i = args.index(name)
+            if i + 1 >= len(args) or args[i + 1].startswith("--"):
+                fail(f"{name} needs a value")
+            return args[i + 1]
         return data.get(name.lstrip("-").replace("-", "_"), default)
 
     start, end = arg("--start"), arg("--end")
-    if start and end:
-        total_h = hours_between(start, end)
-    else:
-        total_h = float(arg("--hours", 0) or 0)
+    try:
+        if start and end:
+            total_h = hours_between(start, end)
+        else:
+            total_h = float(arg("--hours", 0) or 0)
+        team = int(arg("--team", arg("--team-size", arg("--team_size", 1))) or 1)
+        sleep_frac = float(arg("--sleep-frac", DEFAULTS["sleep_frac"]))
+        buf_frac = float(arg("--buffer-frac", DEFAULTS["submission_buffer_frac"]))
+    except (TypeError, ValueError):
+        fail("--hours/--team/--sleep-frac/--buffer-frac must be numbers")
     if not total_h or total_h <= 0:
         fail("need --start/--end or --hours N")
-
-    team = int(arg("--team", arg("--team_size", 1)) or 1)
-    sleep_frac = float(arg("--sleep-frac", DEFAULTS["sleep_frac"]))
-    buf_frac = float(arg("--buffer-frac", DEFAULTS["submission_buffer_frac"]))
 
     usable = total_h * (1 - sleep_frac - buf_frac)
     if usable <= 0:

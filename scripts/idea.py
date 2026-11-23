@@ -17,17 +17,22 @@ AXES = ["rubric_fit", "demoability", "feasibility", "sponsor_fit"]
 
 def main():
     data = read_json_arg(sys.argv)
-    if data is None or not data.get("ideas"):
+    if data is None or not isinstance(data, dict) or not data.get("ideas"):
         fail('need --json {"ideas":[{"name":..,"rubric_fit":N,"demoability":N,"feasibility":N,"sponsor_fit":N}]}')
 
     ideas = data["ideas"]
-    if len(ideas) < 2:
+    if not isinstance(ideas, list) or len(ideas) < 2:
         fail("need at least 2 ideas to rank (generate 3, kill 2)")
 
     for i in ideas:
-        i["_total"] = sum(float(i.get(a, 0)) for a in AXES)
-        i["_tiebreak"] = (1 if i.get("offline_demoable") else 0,
-                          float(i.get("feasibility", 0)))
+        if not isinstance(i, dict) or "name" not in i:
+            fail("each idea needs at least a 'name'")
+        try:
+            i["_total"] = sum(float(i.get(a, 0)) for a in AXES)
+            feas = float(i.get("feasibility", 0))
+        except (TypeError, ValueError):
+            fail(f"idea {i['name']!r}: axis scores must be numbers")
+        i["_tiebreak"] = (-(1 if i.get("offline_demoable") else 0), -feas)
 
     ranked = sorted(ideas, key=lambda i: (-i["_total"], i["_tiebreak"]))
     winner = ranked[0]
@@ -35,7 +40,7 @@ def main():
     emit({
         "status": "ok",
         "summary": f"pick '{winner['name']}' ({winner['_total']}/20). Kill: {', '.join(i['name'] for i in ranked[1:])}",
-        "winner": {"name": winner["name"], "score": winner["_total"], "max": 4 * len(AXES)},
+        "winner": {"name": winner["name"], "score": winner["_total"], "max": 5 * len(AXES)},
         "ranked": [{"name": i["name"], "score": i["_total"],
                     **{a: i.get(a) for a in AXES}} for i in ranked],
         "rules": [

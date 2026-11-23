@@ -11,7 +11,7 @@ unknown submission format, sponsor track ambiguity, missing deadline.
 """
 
 import sys
-from common import emit, read_json_arg
+from common import emit, fail, read_json_arg
 
 REQUIRED = [
     ("rubric", "Judging weights are unknown — you cannot prioritize features without them. Ask or infer from rules page."),
@@ -28,7 +28,7 @@ OPTIONAL = [
 
 def main():
     data = read_json_arg(sys.argv)
-    if data is None:
+    if data is None or not isinstance(data, dict):
         fail_needed()
     gaps, warns = [], []
     for key, msg in REQUIRED:
@@ -39,9 +39,15 @@ def main():
             warns.append({"field": key, "severity": "warn", "fix": msg})
 
     rubric = data.get("rubric") or {}
-    if rubric and abs(sum(rubric.values()) - 100) > 1:
+    if rubric and not isinstance(rubric, dict):
+        fail("rubric must be an object of criterion -> weight")
+    try:
+        rubric_total = sum(float(v) for v in rubric.values())
+    except (TypeError, ValueError):
+        fail("rubric weights must be numbers")
+    if rubric and abs(rubric_total - 100) > 1:
         warns.append({"field": "rubric", "severity": "warn",
-                      "fix": f"rubric weights sum to {sum(rubric.values())}, not 100 — re-check the source."})
+                      "fix": f"rubric weights sum to {rubric_total:g}, not 100 — re-check the source."})
 
     verdict = "READY" if not gaps else ("RISKY" if len(gaps) == 1 else "BLOCKED")
     emit({
@@ -58,7 +64,6 @@ def main():
 
 
 def fail_needed():
-    from common import fail
     fail('need --json {"rubric":{...},"team_max":N,"submission":[...],"ends":"ISO"}')
 
 

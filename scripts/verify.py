@@ -73,10 +73,18 @@ def main():
     args = sys.argv
 
     def arg(name, default=None):
-        return args[args.index(name) + 1] if name in args else default
+        if name not in args:
+            return default
+        i = args.index(name)
+        if i + 1 >= len(args) or args[i + 1].startswith("--"):
+            fail(f"{name} needs a value")
+        return args[i + 1]
 
     url, readme, video = arg("--url"), arg("--readme", "README.md"), arg("--video")
-    max_min = float(arg("--max-video-min", 3))
+    try:
+        max_min = float(arg("--max-video-min", 3))
+    except (TypeError, ValueError):
+        fail("--max-video-min must be a number")
 
     checks = []
     if url:

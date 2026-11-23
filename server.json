@@ -1,7 +1,16 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.nikolas-sapa/hackathon-skill",
-  "description": "MCP server exposing hackathon planning tools: recon scoring, rubric self-judge, scope cutting, deadline tracking.",
+  "title": "Hackathon Skill",
+  "description": "Hackathon planning tools: recon scoring, rubric self-judge, scope cutting, deadline tracking.",
   "version": "0.2.0",
-  "repository": { "url": "https://github.com/nikolas-sapa/hackathon-skill", "source": "github" }
+  "repository": { "url": "https://github.com/nikolas-sapa/hackathon-skill", "source": "github" },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "hackathon-skill",
+      "version": "0.2.0",
+      "transport": { "type": "stdio" }
+    }
+  ]
 }

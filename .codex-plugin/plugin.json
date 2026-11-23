@@ -1,0 +1,17 @@
+{
+  "name": "hackathon-skill",
+  "version": "0.2.0",
+  "description": "Hackathon teammate for coding agents: brief decode, recon scoring, scope cutting, deadline countdown, demo + submission verification.",
+  "author": { "name": "Nikolas Sapalidis", "url": "https://github.com/nikolas-sapa" },
+  "homepage": "https://github.com/nikolas-sapa/hackathon-skill",
+  "repository": "https://github.com/nikolas-sapa/hackathon-skill",
+  "license": "MIT",
+  "keywords": ["hackathon", "devpost", "agent-skills", "demo", "judging", "mvp"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "hackathon-skill",
+    "developerName": "Nikolas Sapalidis",
+    "shortDescription": "Pace and win a hackathon with your coding agent."
+  }
+}

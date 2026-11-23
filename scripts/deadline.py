@@ -36,14 +36,22 @@ def main():
     args = sys.argv
 
     def arg(name, default=None):
-        return args[args.index(name) + 1] if name in args else default
+        if name not in args:
+            return default
+        i = args.index(name)
+        if i + 1 >= len(args) or args[i + 1].startswith("--"):
+            fail(f"{name} needs a value")
+        return args[i + 1]
 
     end_s = arg("--end")
     if not end_s:
         fail("need --end ISO timestamp")
     end = parse_ts(end_s)
     now = parse_ts(arg("--now")) if arg("--now") else datetime.now(timezone.utc)
-    buffer_h = float(arg("--buffer-hours", 3))
+    try:
+        buffer_h = float(arg("--buffer-hours", 3))
+    except (TypeError, ValueError):
+        fail("--buffer-hours must be a number")
     block = arg("--block")
 
     if "--watch" in args:

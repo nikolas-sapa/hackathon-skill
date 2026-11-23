@@ -26,13 +26,20 @@ FIX_HINTS = {
 
 def main():
     data = read_json_arg(sys.argv)
-    if data is None:
+    if data is None or not isinstance(data, dict):
         fail('need --json {"rubric":{...},"self_scores":{...}}')
 
     rubric = data.get("rubric")
     scores = data.get("self_scores")
     if not rubric or not scores:
         fail("rubric and self_scores required")
+    if not isinstance(rubric, dict) or not isinstance(scores, dict):
+        fail("rubric and self_scores must be objects")
+    try:
+        rubric = {k: float(v) for k, v in rubric.items()}
+        scores = {k: float(v) for k, v in scores.items()}
+    except (TypeError, ValueError):
+        fail("rubric weights and self_scores must be numbers")
 
     total_w = sum(rubric.values())
     if total_w <= 0:
@@ -40,7 +47,7 @@ def main():
 
     earned, detail = 0.0, []
     for crit, weight in rubric.items():
-        s = float(scores.get(crit, 0))
+        s = scores.get(crit, 0)
         frac = s / 10.0
         pts = frac * weight
         earned += pts

@@ -31,7 +31,7 @@ JUDGE_STYLES = {
 
 def main():
     data = read_json_arg(sys.argv)
-    if data is None:
+    if data is None or not isinstance(data, dict):
         fail('need --json {"event":..,"judges":[..],"sponsors":[..],"past_winners":[..],"requirements":[..]}')
 
     judges = data.get("judges", [])

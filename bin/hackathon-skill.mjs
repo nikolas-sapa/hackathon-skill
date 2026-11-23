@@ -7,6 +7,10 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const tools = ["plan", "scope", "deadline", "check", "recon", "idea", "score", "verify"];
 const [, , tool, ...rest] = process.argv;
 
+if (tool === "mcp") {
+  const r = spawnSync("python3", [join(root, "mcp", "server.py")], { stdio: "inherit" });
+  process.exit(r.status ?? 1);
+}
 if (!tool || !tools.includes(tool)) {
   console.log(`hackathon-skill — usage: hackathon-skill <${tools.join("|")}> [args]
   plan      --hours 48 | --start ISO --end ISO [--team 2]
@@ -16,7 +20,8 @@ if (!tool || !tools.includes(tool)) {
   recon     --json '{"judges":[..],"sponsors":[..],"past_winners":[..]}'
   idea      --json '{"ideas":[{name,rubric_fit,demoability,feasibility,sponsor_fit}]}'
   score     --json '{"rubric":{...},"self_scores":{...}}'
-  verify    --url URL [--readme README.md] [--video f.mp4 --max-video-min 3]`);
+  verify    --url URL [--readme README.md] [--video f.mp4 --max-video-min 3]
+  mcp       run the MCP stdio server`);
   process.exit(0);
 }
 const r = spawnSync("python3", [join(root, "scripts", `${tool}.py`), ...rest], { stdio: "inherit" });

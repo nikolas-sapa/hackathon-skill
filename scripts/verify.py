@@ -21,15 +21,29 @@ from common import emit, fail
 
 def check_url(url):
     try:
+        opener = urllib.request.build_opener(NoRedirect())
         req = urllib.request.Request(url, method="HEAD",
                                      headers={"User-Agent": "hackathon-skill-verify"})
-        with urllib.request.urlopen(req, timeout=10) as r:
+        with opener.open(req, timeout=10) as r:
             code = r.status
-        return {"check": "url", "result": "pass" if code == 200 else "warn",
-                "detail": f"HTTP {code}"}
+    except urllib.error.HTTPError as e:
+        code = e.code  # 3xx/4xx surfaces here because we don't follow redirects
     except Exception as e:
         return {"check": "url", "result": "fail",
                 "detail": f"unreachable: {type(e).__name__}: {e}"}
+    if code in (301, 302, 303, 307, 308):
+        return {"check": "url", "result": "warn",
+                "detail": f"redirects ({code}) — check it doesn't land on a login/auth wall"}
+    if code in (401, 403):
+        return {"check": "url", "result": "warn",
+                "detail": f"HTTP {code} — judges hit a wall; add guest/demo mode or seeded creds"}
+    return {"check": "url", "result": "pass" if code == 200 else "warn",
+            "detail": f"HTTP {code}"}
+
+
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
 
 
 def check_readme(path):

@@ -69,6 +69,32 @@ def main():
     if any("must" in r.lower() for r in reqs):
         flags.append("hard requirements present — wire them into check.py")
 
+    # IP/rules scan over requirement text.
+    ip_flags = []
+    for r in reqs:
+        rl = r.lower()
+        if any(k in rl for k in ("perpetual", "irrevocable", "assign", "transfer",
+                                 "royalty-free", "waive")):
+            ip_flags.append(f"possible rights grab: {r!r}")
+        if "open source" in rl or "open-source" in rl or "public repo" in rl:
+            ip_flags.append(f"open-source/public mandate: {r!r}")
+        if "topic" in rl or "tag" in rl:
+            ip_flags.append(f"required tag — missing it can auto-DQ: {r!r}")
+        if "pre-existing" in rl or "before the hackathon" in rl:
+            ip_flags.append(f"pre-existing-code rule — know what counts: {r!r}")
+
+    # Idea saturation: caller lists near-duplicate projects they found.
+    similar = data.get("similar_projects")
+    if similar is None:
+        saturation, n_sim = "UNSCORED", 0
+        flags.append("no similar_projects provided — search Devpost gallery + GitHub for near-duplicates before committing")
+    else:
+        n_sim = len(similar)
+        saturation = ("PIONEER" if n_sim <= 1 else
+                      "TRENDING" if n_sim <= 5 else "SATURATED")
+        if n_sim > 5:
+            flags.append(f"{n_sim} near-duplicates found — differentiate hard or switch idea")
+
     emit({
         "status": "ok",
         "summary": f"audience={dominant}, {len(sponsors)} sponsors, {len(patterns)} winning patterns",
@@ -78,6 +104,8 @@ def main():
         "sponsor_ev": [{"name": s.get("name"), "has_api": bool(s.get("api")),
                         "prize": s.get("prize")} for s in sponsor_rank],
         "winning_patterns": dict(patterns.most_common()),
+        "ip_flags": ip_flags,
+        "idea_saturation": {"verdict": saturation, "near_duplicates": n_sim},
         "requirement_flags": flags,
         "rules": [
             "Optimize for the dominant judge type, but keep the demo legible to all.",

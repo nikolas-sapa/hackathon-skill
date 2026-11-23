@@ -101,6 +101,8 @@ def main():
             "If spike fails, pivot to the #2 idea — never extend the spike.",
             "Cut features before cutting the demo; a smaller working demo beats a bigger broken one.",
             "Submit early; servers and Wi-Fi fail in the last hour.",
+            "Sleep blocks are first-class: the presenter protects theirs — zero-sleep teams lose more than they gain.",
+            "Set a no-new-features cutoff at ~75% elapsed: after that it's bugs, polish, and demo only.",
         ],
     }, brief="--json-brief" in args)
 

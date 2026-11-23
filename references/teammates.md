@@ -1,12 +1,21 @@
 # Teammates — humans + agents on one clock
 
+## Team formation (before the event)
+
+Cover the four roles or accept the gap explicitly: **builder / designer / pitcher / integrator** (the one who makes pieces talk). A team of 4 builders demos badly; a team of 4 non-builders doesn't demo at all.
+
+- Vet on work ethic, not skill. Ask "what did you ship last month?" — the answer filters better than any resume.
+- 2-4 people cap; more = coordination eats the prize.
+- Post `templates/team-up-post.md` in the event Discord/Devpost participants tab early — good people get claimed fast.
+- Lock idea + roles in the first hour; open-ended "let's see" teams churn.
+
 ## Roles (assign during recon, not mid-build)
 
 | Role | Owner | Job |
 |---|---|---|
 | Driver | best builder | the core happy path, uninterrupted |
 | Scope cop | 1 person | runs `scope.py` on every new idea, says no |
-| Demo owner | NOT the driver | video script, README, submission fields, from hour ~60% |
+| Demo owner | NOT the driver | video script, README, submission fields, from hour ~60% — **Devpost draft created by hour 2** and filled progressively |
 | Recon lead | fastest reader | judges, sponsors, past winners during ideation |
 
 Solo + agent: you are demo owner and scope cop; the agent is the driver.

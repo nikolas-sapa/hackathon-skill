@@ -21,6 +21,15 @@
 - Under the limit — `verify.py --video demo.mp4 --max-video-min N` checks it.
 - Hosted where it won't die: YouTube unlisted, Loom, or embedded in the repo.
 
+## Judge self-serve (the demo after the demo)
+
+Judges click your link days later, alone. Kill the ways that dies:
+
+- **Free-tier sleep**: Supabase pauses idle projects, Render cold-starts ~50s, Railway sleeps. Set a keep-alive ping (cron hitting your own URL every 20 min) through judging week.
+- **Auth walls**: if the app needs login, ship a **guest/demo mode** or seeded credentials printed in the README + on the landing page. A login screen = 0 points.
+- **Re-wake before judging day**: cold-open the URL, run the demo path once yourself.
+- `verify.py --url` checks the URL responds; YOU must check it in incognito — your session cookie hides walls.
+
 ## Common stage killers
 
 | Killer | Pre-flight check |

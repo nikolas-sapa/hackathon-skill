@@ -24,7 +24,7 @@
 | `score` | "If judges scored us right now, where do we bleed points?" |
 | `verify` | "Does the URL load, the video fit the limit, the README sell it?" |
 
-Plus twelve human-written playbooks (`references/`) distilled from shipped hackathon entries: the recon playbook (judges, sponsors, past winners), rubric weighting, the ideation matrix, the exact order to cut scope in, when to pivot, teammate + git coordination, the 90-second demo script, demo reliability, the 20 judging questions, submission checklist, and the post-hackathon playbook. Templates in `templates/` (submission skeleton, past-winners analysis, README).
+Plus sixteen human-written playbooks (`references/`) distilled from shipped hackathon entries and judge interviews: pre-event prep, stack choices, the recon playbook (judges, sponsors, past winners, IP scan), rubric weighting, the ideation matrix, the exact order to cut scope in, when to pivot, teammate formation + git coordination, the 90-second demo script (+ video pitch variants), demo reliability, booth/table judging, mentor extraction, the 20 judging questions, submission checklist, and the post-hackathon playbook. Templates in `templates/` (submission, past-winners, README, packing list, team-up post).
 
 ## Install
 

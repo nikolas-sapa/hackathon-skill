@@ -16,3 +16,23 @@ Structure judges respond to, learned from demos that won. Total: 90s ±10s.
 - One journey, not a feature tour. Judges see 40 demos; they remember the one they followed.
 - Rehearse on a clean machine. If it doesn't run cold, it doesn't count.
 - End with the thing, not the tech. "Here's X working" lands; "we used React" doesn't.
+- For table judging (the common MLH format) see `booth-judging.md` — different game entirely.
+
+## The video pitch (remote/async judging — the video IS the pitch)
+
+For Devpost-style events judges aren't required to watch past the limit — and often don't finish it. Rules:
+
+- Hard limit (usually 3 min); working product visible in the **first 30 seconds**.
+- Give each rubric criterion a labeled beat — judges skim for their scoring sheet.
+- Name sponsor APIs on-screen early; sponsor tracks pass/fail screen for it.
+- Captions or large on-screen text — many watch muted.
+- Video, README, and submission text tell the same story — judges cross-check.
+
+## Length variants
+
+| Length | Keep | Drop |
+|---|---|---|
+| 30s | problem 5s → demo 20s → close 5s | wow beat merged into demo |
+| 90s | full table above | — |
+| 3min | + architecture appendix + sponsor callout | second user journey |
+| 5min | + challenges/what's next | never add a second demo |

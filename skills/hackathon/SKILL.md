@@ -1,6 +1,6 @@
 ---
 name: hackathon
-version: 0.2.0
+version: 0.3.0
 license: MIT
 description: 'Plan and win a hackathon with any coding agent: decode the brief, score ideas against the judging rubric, cut MVP scope brutally, pace the clock, and write the submission. Use whenever the user mentions a hackathon, Devpost, DoraHacks, lablab, a judge rubric, demo day, or "we have 48 hours". Python 3.9+, stdlib only, offline.'
 ---
@@ -25,19 +25,22 @@ Every tool is `python3 <skill-dir>/scripts/<name>.py` and prints JSON. All accep
 | Final gate | `verify.py` | `--url URL --readme README.md --video demo.mp4` |
 
 Then consult `references/` for the human-written judgment:
-`recon-playbook.md` (judges/sponsors/past winners), `rubric-first.md`, `ideation-matrix.md`,
+`pre-hack.md` (accounts/keys/packing before the event), `stack.md` (pick a stack in minutes),
+`recon-playbook.md` (judges/sponsors/past winners + IP scan), `rubric-first.md`, `ideation-matrix.md`,
 `cut-ladder.md`, `pivot.md` (when to abandon), `teammates.md` + `git-workflow.md` (coordination),
-`demo-script.md` + `demo-reliability.md`, `judging-qa.md` (the 20 questions), `submission.md`,
-`post-hackathon.md`. Templates live in `templates/` (submission skeleton, past-winners table, README).
+`demo-script.md` + `demo-reliability.md` + `booth-judging.md` (table-judging format), `mentors.md`,
+`judging-qa.md` (the 20 questions), `submission.md`, `post-hackathon.md`.
+Templates live in `templates/` (submission, past-winners, README, packing list, team-up post).
 
 ## The workflow (follow in order, gates are hard)
 
-1. **Recon.** Read `references/recon-playbook.md`, run the research lanes, feed findings into `recon.py`, then `check.py` on the brief. If `verdict` is `BLOCKED`, stop — building on a wrong assumption loses the event.
+0. **Pre-hack.** Run through `references/pre-hack.md` before the event: accounts, sponsor keys, hello-world deploy, packing list. Check `references/stack.md` and pick the stack now.
+1. **Recon.** Read `references/recon-playbook.md`, run the research lanes, feed findings into `recon.py` (include `similar_projects` — near-duplicates you found), then `check.py` on the brief. If `verdict` is `BLOCKED`, stop — building on a wrong assumption loses the event.
 2. **Plan.** Run `plan.py`. Get the six-block schedule with gates. Do not start coding before `recon` and `ideate` gates pass.
 3. **Ideate.** Max 3 ideas scored by `idea.py` against rubric and sponsor fit. Pick one, kill the rest.
 4. **Spike.** Prove only the riskiest assumption, in the spike block only. Fail → pivot per `references/pivot.md`, never extend.
 5. **Build.** One vertical slice end-to-end first. `scope.py` whenever the feature list grows. `deadline.py --watch` on a spare pane.
-6. **Demo + submit.** `deadline.py --block demo_prep`, script per `references/demo-script.md`, rehearse Q&A per `references/judging-qa.md`. Then `score.py` your draft and `verify.py` the artifacts. Submit >=1h early.
+6. **Demo + submit.** `deadline.py --block demo_prep`, script per `references/demo-script.md` (booth format → `references/booth-judging.md`), rehearse Q&A per `references/judging-qa.md`. Then `score.py` your draft and `verify.py` the artifacts. Submit >=1h early.
 
 ## Non-negotiables baked into the tools
 

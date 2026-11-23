@@ -59,7 +59,7 @@ r = parse(py("score.py", ["--json", JSON.stringify({
   rubric: { demo: 40, technical: 35, impact: 25 },
   self_scores: { demo: 7, technical: 8, impact: 5 },
 })]));
-assert.equal(r.weakest_criterion, "demo");
+assert.equal(r.weakest_criterion, "impact"); // 12.5 pts available vs demo's 12
 
 // verify (readme only, offline-safe)
 r = spawnSync("python3", [join(root, "scripts", "verify.py"), "--readme", join(root, "README.md")], { encoding: "utf8" });

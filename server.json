@@ -3,13 +3,13 @@
   "name": "io.github.nikolas-sapa/hackathon-skill",
   "title": "Hackathon Skill",
   "description": "Hackathon planning tools: recon scoring, rubric self-judge, scope cutting, deadline tracking.",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "repository": { "url": "https://github.com/nikolas-sapa/hackathon-skill", "source": "github" },
   "packages": [
     {
       "registryType": "npm",
       "identifier": "hackathon-skill",
-      "version": "0.3.2",
+      "version": "0.3.3",
       "transport": { "type": "stdio" }
     }
   ]

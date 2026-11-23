@@ -6,7 +6,7 @@
     {
       "name": "hackathon-skill",
       "description": "Hackathon teammate for coding agents: recon, planning, scope cutting, demo and submission verification.",
-      "version": "0.3.2",
+      "version": "0.3.3",
       "source": "./"
     }
   ]

@@ -1,12 +1,12 @@
 {
   "name": "hackathon-skill",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Agent skill + MCP that turns a coding agent into a hackathon teammate: brief decoding, rubric scoring, scope cutting, demo planning.",
   "mcpName": "io.github.nikolas-sapa/hackathon-skill",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "hackathon-skill": "./bin/hackathon-skill.mjs"
+    "hackathon-skill": "bin/hackathon-skill.mjs"
   },
   "scripts": {
     "test": "node scripts/test.mjs"

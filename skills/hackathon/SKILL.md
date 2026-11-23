@@ -1,6 +1,6 @@
 ---
 name: hackathon
-version: 0.3.2
+version: 0.3.3
 license: MIT
 description: 'Plan and win a hackathon with any coding agent: decode the brief, score ideas against the judging rubric, cut MVP scope brutally, pace the clock, and write the submission. Use whenever the user mentions a hackathon, Devpost, DoraHacks, lablab, a judge rubric, demo day, or "we have 48 hours". Python 3.9+, stdlib only, offline.'
 ---

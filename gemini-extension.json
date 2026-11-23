@@ -1,5 +1,5 @@
 {
   "name": "hackathon-skill",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Hackathon teammate for coding agents: brief decode, recon scoring, scope cutting, deadline countdown, demo + submission verification. Stdlib Python, offline."
 }

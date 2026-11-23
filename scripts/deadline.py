@@ -7,8 +7,29 @@ Usage:
 """
 
 import sys
+import time
 from datetime import datetime, timezone
 from common import emit, fail, parse_ts
+
+
+def watch(end, buffer_h):
+    """Live countdown ticker for tmux/statusline or a spare terminal."""
+    try:
+        while True:
+            left = (end - datetime.now(timezone.utc)).total_seconds()
+            if left <= 0:
+                print("\r  DEADLINE PASSED — submit whatever exists   ", flush=True)
+                break
+            h, rem = divmod(int(left), 3600)
+            m, s = divmod(rem, 60)
+            build = max(0, left - buffer_h * 3600)
+            bh, brem = divmod(int(build), 3600)
+            bm = brem // 60
+            phase = "SUBMIT BUFFER" if build == 0 else "build"
+            print(f"\r  T-{h:02d}:{m:02d}:{s:02d}  ({phase} {bh:02d}:{bm:02d} left)  ", end="", flush=True)
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print()
 
 
 def main():
@@ -24,6 +45,10 @@ def main():
     now = parse_ts(arg("--now")) if arg("--now") else datetime.now(timezone.utc)
     buffer_h = float(arg("--buffer-hours", 3))
     block = arg("--block")
+
+    if "--watch" in args:
+        watch(end, buffer_h)
+        return
 
     left = (end - now).total_seconds() / 3600.0
     build_left = max(0.0, left - buffer_h)

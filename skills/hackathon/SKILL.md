@@ -13,21 +13,29 @@ Every tool is `python3 <skill-dir>/scripts/<name>.py` and prints JSON. All accep
 
 | Situation | Tool | Input |
 |---|---|---|
-| Starting a hackathon | `plan.py` | `{"hours":48,"team_size":2}` or `--start/--end` ISO |
-| "What can I still ship" | `scope.py` | `{"hours_left":12,"features":[{name,est_h,demo_visible,critical_path}]}` |
-| Mid-run clock check | `deadline.py` | `--end ISO --block build` |
+| Pre-event research | `recon.py` | `{"judges":[..],"sponsors":[..],"past_winners":[..],"requirements":[..]}` |
 | "Did I miss anything in the rules" | `check.py` | parsed brief fields as JSON |
+| Starting a hackathon | `plan.py` | `{"hours":48,"team_size":2}` or `--start/--end` ISO |
+| Choosing between ideas | `idea.py` | `{"ideas":[{name,rubric_fit,demoability,feasibility,sponsor_fit}]}` |
+| "What can I still ship" | `scope.py` | `{"hours_left":12,"features":[{name,est_h,demo_visible,critical_path}]}` |
+| Mid-run clock check | `deadline.py` | `--end ISO --block build`; `--watch` for a live ticker |
+| Before submitting | `score.py` | `{"rubric":{...},"self_scores":{...}}` |
+| Final gate | `verify.py` | `--url URL --readme README.md --video demo.mp4` |
 
-Then consult `references/` for the human-written judgment: `rubric-first.md` (how to weight features), `cut-ladder.md` (what to delete first), `demo-script.md` (the 90-second winner template), `submission.md` (README + video checklist).
+Then consult `references/` for the human-written judgment:
+`recon-playbook.md` (judges/sponsors/past winners), `rubric-first.md`, `ideation-matrix.md`,
+`cut-ladder.md`, `pivot.md` (when to abandon), `teammates.md` + `git-workflow.md` (coordination),
+`demo-script.md` + `demo-reliability.md`, `judging-qa.md` (the 20 questions), `submission.md`,
+`post-hackathon.md`. Templates live in `templates/` (submission skeleton, past-winners table, README).
 
 ## The workflow (follow in order, gates are hard)
 
-1. **Recon.** Run `check.py` on whatever the brief gives you. If `verdict` is `BLOCKED`, stop and fill the gap — building on a wrong rubric assumption loses the event.
+1. **Recon.** Read `references/recon-playbook.md`, run the research lanes, feed findings into `recon.py`, then `check.py` on the brief. If `verdict` is `BLOCKED`, stop — building on a wrong assumption loses the event.
 2. **Plan.** Run `plan.py`. Get the six-block schedule with gates. Do not start coding before `recon` and `ideate` gates pass.
-3. **Ideate.** Max 3 ideas, scored against rubric weights and sponsor fit (see `references/ideation-matrix.md`). Pick one, kill the rest.
-4. **Spike.** Prove only the riskiest assumption, in the spike block only. Fail → pivot, never extend.
-5. **Build.** One vertical slice end-to-end first. `scope.py` whenever the feature list grows.
-6. **Demo + submit.** Run `deadline.py --block demo_prep`. Script the 90-second demo from `references/demo-script.md`. Submit >=1h early.
+3. **Ideate.** Max 3 ideas scored by `idea.py` against rubric and sponsor fit. Pick one, kill the rest.
+4. **Spike.** Prove only the riskiest assumption, in the spike block only. Fail → pivot per `references/pivot.md`, never extend.
+5. **Build.** One vertical slice end-to-end first. `scope.py` whenever the feature list grows. `deadline.py --watch` on a spare pane.
+6. **Demo + submit.** `deadline.py --block demo_prep`, script per `references/demo-script.md`, rehearse Q&A per `references/judging-qa.md`. Then `score.py` your draft and `verify.py` the artifacts. Submit >=1h early.
 
 ## Non-negotiables baked into the tools
 

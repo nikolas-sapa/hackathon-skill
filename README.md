@@ -8,12 +8,16 @@
 
 | Tool | Question it answers |
 |---|---|
-| `plan` | "48 hours, 2 people — when do we ideate vs build vs submit?" |
-| `scope` | "10 features, 8 hours left — what survives?" |
-| `deadline` | "How much build time is actually left?" |
+| `recon` | "Who are the judges, which sponsor prize is easiest, what do past winners have in common?" |
 | `check` | "What did I miss in the rules that will DQ me?" |
+| `plan` | "48 hours, 2 people — when do we ideate vs build vs submit?" |
+| `idea` | "3 ideas on the table — which one do we kill last?" |
+| `scope` | "10 features, 8 hours left — what survives?" |
+| `deadline` | "How much build time is actually left?" (`--watch` = live countdown ticker) |
+| `score` | "If judges scored us right now, where do we bleed points?" |
+| `verify` | "Does the URL load, the video fit the limit, the README sell it?" |
 
-Plus four human-written playbooks (`references/`) distilled from shipped hackathon entries: how to weight features against the judging rubric, the exact order to cut scope in, the 90-second demo script, and the submission checklist.
+Plus twelve human-written playbooks (`references/`) distilled from shipped hackathon entries: the recon playbook (judges, sponsors, past winners), rubric weighting, the ideation matrix, the exact order to cut scope in, when to pivot, teammate + git coordination, the 90-second demo script, demo reliability, the 20 judging questions, submission checklist, and the post-hackathon playbook. Templates in `templates/` (submission skeleton, past-winners analysis, README).
 
 ## Install
 

@@ -49,6 +49,22 @@ TOOLS = {
         "description": "Audit a parsed hackathon brief for missing critical fields.",
         "inputSchema": {"type": "object"},
     },
+    "recon": {
+        "description": "Score event research: judge mix, sponsor EV, winning patterns.",
+        "inputSchema": {"type": "object"},
+    },
+    "idea": {
+        "description": "Rank candidate ideas on rubric/demo/feasibility/sponsor axes.",
+        "inputSchema": {
+            "type": "object",
+            "required": ["ideas"],
+            "properties": {"ideas": {"type": "array", "items": {"type": "object"}}},
+        },
+    },
+    "score": {
+        "description": "Self-judge a submission against the rubric; find the weakest criterion.",
+        "inputSchema": {"type": "object"},
+    },
 }
 
 

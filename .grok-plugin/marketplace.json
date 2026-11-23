@@ -5,7 +5,7 @@
     {
       "name": "hackathon-skill",
       "description": "Hackathon teammate for coding agents.",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "source": { "source": "url", "url": "https://github.com/nikolas-sapa/hackathon-skill.git" }
     }
   ]

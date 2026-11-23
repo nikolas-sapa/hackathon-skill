@@ -23,6 +23,7 @@ Feed suspicious clauses into `recon.py` `requirements` — it flags them. Watch 
 ## Sources
 
 - Devpost/DoraHacks/lablab event page + previous editions' galleries
+- `unicorn-mafia/awesome-hackathon-winners` on GitHub — curated real winning repos across ~25 events; feed 3-5 closest ones into `recon.py` `similar_projects` and steal their demo patterns
 - Sponsor docs pages (does the API actually exist and work?)
 - Judges' recent talks/posts — what they've praised publicly is what they'll reward
 - Organizer Discord/Slack — rules clarifications others already asked

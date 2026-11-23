@@ -37,5 +37,6 @@ Judges pattern-match. Have a one-sentence answer ready for each of these before 
 ## Rules
 
 - Answer in ≤20 seconds; the follow-up is where you win depth.
+- Reading this list isn't rehearsal — run a live simulation against a hostile panel per `mock-judging.md`.
 - Never say "great question" or restate the question. Judges hear it 40 times.
 - If you don't know, say what you'd check. Guessing loses more than honesty.

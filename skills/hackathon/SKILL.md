@@ -1,6 +1,6 @@
 ---
 name: hackathon
-version: 0.3.0
+version: 0.3.1
 license: MIT
 description: 'Plan and win a hackathon with any coding agent: decode the brief, score ideas against the judging rubric, cut MVP scope brutally, pace the clock, and write the submission. Use whenever the user mentions a hackathon, Devpost, DoraHacks, lablab, a judge rubric, demo day, or "we have 48 hours". Python 3.9+, stdlib only, offline.'
 ---
@@ -29,8 +29,9 @@ Then consult `references/` for the human-written judgment:
 `recon-playbook.md` (judges/sponsors/past winners + IP scan), `rubric-first.md`, `ideation-matrix.md`,
 `cut-ladder.md`, `pivot.md` (when to abandon), `teammates.md` + `git-workflow.md` (coordination),
 `demo-script.md` + `demo-reliability.md` + `booth-judging.md` (table-judging format), `mentors.md`,
-`judging-qa.md` (the 20 questions), `submission.md`, `post-hackathon.md`.
-Templates live in `templates/` (submission, past-winners, README, packing list, team-up post).
+`judging-qa.md` + `mock-judging.md` (hostile-panel rehearsal), `biz-case.md` (pitch-heavy events),
+`submission.md`, `post-hackathon.md`.
+Templates live in `templates/` (submission, past-winners, README, packing list, team-up post, team profile).
 
 ## The workflow (follow in order, gates are hard)
 

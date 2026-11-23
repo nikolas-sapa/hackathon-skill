@@ -7,6 +7,7 @@ Cover the four roles or accept the gap explicitly: **builder / designer / pitche
 - Vet on work ethic, not skill. Ask "what did you ship last month?" — the answer filters better than any resume.
 - 2-4 people cap; more = coordination eats the prize.
 - Post `templates/team-up-post.md` in the event Discord/Devpost participants tab early — good people get claimed fast.
+- Fill `templates/team-profile.md` in hour 0 — the skill inventory drives role assignment *and* idea constraints (don't pick an idea nobody can build).
 - Lock idea + roles in the first hour; open-ended "let's see" teams churn.
 
 ## Roles (assign during recon, not mid-build)

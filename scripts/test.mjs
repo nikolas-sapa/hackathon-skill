@@ -1,9 +1,25 @@
 import { spawnSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import assert from "node:assert";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+const version = JSON.parse(readFileSync(join(root, "package.json"), "utf8")).version;
+for (const m of [
+  ".claude-plugin/plugin.json",
+  ".cursor-plugin/plugin.json",
+  ".grok-plugin/plugin.json",
+  "gemini-extension.json",
+  "server.json",
+]) {
+  const v = JSON.parse(readFileSync(join(root, m), "utf8")).version;
+  assert.equal(v, version, `${m} version ${v} != package.json ${version}`);
+}
+for (const m of [".claude-plugin/marketplace.json", ".grok-plugin/marketplace.json"]) {
+  const v = JSON.parse(readFileSync(join(root, m), "utf8")).plugins[0].version;
+  assert.equal(v, version, `${m} plugin version ${v} != ${version}`);
+}
 const py = (s, args) => spawnSync("python3", [join(root, "scripts", s), ...args], { encoding: "utf8" });
 const parse = r => JSON.parse(r.stdout);
 

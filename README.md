@@ -1,8 +1,15 @@
 # hackathon-skill
 
+[![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![CI](https://github.com/nikolas-sapa/hackathon-skill/actions/workflows/test.yml/badge.svg)](https://github.com/nikolas-sapa/hackathon-skill/actions)
+[![skill](https://img.shields.io/badge/agent--skill-SKILL.md-006bff)](skills/hackathon/SKILL.md)
+[![MCP](https://img.shields.io/badge/MCP-stdio-green)](mcp/server.py)
+
 **Turn your coding agent into a hackathon teammate.** A SKILL.md + MCP server for Claude Code, Cursor, Codex and any agent that reads skills. It decodes the brief, paces the clock, cuts scope ruthlessly, and keeps you on the side of the rubric that wins.
 
 > Why this exists: hackathons are not won by the best code. They're won by the team that picks the right idea, cuts the right features, and demos the right 90 seconds. Agents are great at building — this skill makes them great at *pacing*.
+
+![demo](demo.gif)
 
 ## What it does
 
@@ -22,10 +29,19 @@ Plus twelve human-written playbooks (`references/`) distilled from shipped hacka
 ## Install
 
 ```bash
-npx hackathon-skill --help        # CLI, stdlib Python 3 only
-# or point your agent at skills/hackathon/SKILL.md
-# or add mcp/server.py as an MCP stdio server
+npx skills add nikolas-sapa/hackathon-skill      # any agent: Claude Code, Cursor, Codex, Gemini, 50+ hosts
+./install.sh                                   # local clone: detects harness dirs and installs
+npx hackathon-skill plan --hours 48            # CLI only, stdlib Python 3
 ```
+
+| Harness | Command |
+|---|---|
+| Claude Code | `/plugin marketplace add nikolas-sapa/hackathon-skill` then `/plugin install hackathon-skill` |
+| Cursor | `npx skills add nikolas-sapa/hackathon-skill` |
+| Codex | `codex plugin marketplace add nikolas-sapa/hackathon-skill --sparse .claude-plugin` |
+| Gemini CLI | `gemini extensions install https://github.com/nikolas-sapa/hackathon-skill` |
+| Grok | `grok plugin install nikolas-sapa/hackathon-skill` |
+| MCP client | add `python3 mcp/server.py` as a stdio server |
 
 No cloud, no API keys, no telemetry. Everything runs on your machine.
 

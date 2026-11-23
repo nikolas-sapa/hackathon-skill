@@ -1,0 +1,8 @@
+{
+  "name": "hackathon-skill",
+  "displayName": "hackathon-skill",
+  "version": "0.2.0",
+  "description": "Hackathon teammate for coding agents: brief decode, recon scoring, scope cutting, deadline countdown, demo + submission verification.",
+  "author": { "name": "Nikolas Sapalidis", "url": "https://github.com/nikolas-sapa" },
+  "homepage": "https://github.com/nikolas-sapa/hackathon-skill"
+}

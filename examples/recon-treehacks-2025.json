@@ -1,0 +1,32 @@
+{
+  "event": "TreeHacks 2025 (Stanford, Feb 14-16, 2025)",
+  "judges": [
+    {"name": "Nader Khalil", "background": "founder"},
+    {"name": "Akaash Vishal Hazarika", "background": "founder"},
+    {"name": "Madhav Goenka", "background": "founder"},
+    {"name": "Sireesha Pulipati", "background": "engineer"},
+    {"name": "Chitoku Yato", "background": "engineer"},
+    {"name": "Vaibhav Vyas", "background": "engineer"}
+  ],
+  "sponsors": [
+    {"name": "NVIDIA", "api": true, "prize": "Best Accelerated Compute + Robo Prize"},
+    {"name": "ElevenLabs", "api": true, "prize": "Best Use of ElevenLabs: 11M API credits + AirPods Max"},
+    {"name": "Perplexity", "api": true, "prize": "Best Search Hack: gift cards + HQ visit"},
+    {"name": "InterSystems", "api": true, "prize": "Best GenAI w/ IRIS Vector Search: cash"},
+    {"name": "Mistral AI", "api": true, "prize": "Best Use of Mistral API: cash + credits"},
+    {"name": "Tesla", "api": false, "prize": "Excellence Prize: gift cards"}
+  ],
+  "past_winners": [
+    {"name": "HawkWatch", "why_won": "Grand Prize: live real-time demo, cameras become smart security, clear real-world impact"},
+    {"name": "OmNom", "why_won": "Most Creative: working autonomous delivery robot, end-to-end hardware demo"},
+    {"name": "Edith", "why_won": "Most Technically Complex: accessibility glasses, sponsor API, technical depth"},
+    {"name": "BlinkAI", "why_won": "Best Beginner: accessibility impact, working demo, novel input"}
+  ],
+  "requirements": [
+    "Students only, in-person check-in required",
+    "Team physically present for judging Sunday 10am-1pm",
+    "All building during the 36h window; repos audited for pre-hackathon commits",
+    "Devpost submission within the window",
+    "Teams up to 4"
+  ]
+}

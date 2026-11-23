@@ -1,0 +1,11 @@
+{
+  "hours": 48,
+  "team_size": 2,
+  "rubric": { "demo": 40, "technical": 35, "impact": 25 },
+  "team_max": 4,
+  "submission": ["github", "video<=3min"],
+  "sponsor_apis": ["openai", "vercel"],
+  "theme": "agents that do real work",
+  "starts": "2026-11-22T14:00",
+  "ends": "2026-11-24T14:00"
+}

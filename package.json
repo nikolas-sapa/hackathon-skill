@@ -1,0 +1,27 @@
+{
+  "name": "hackathon-skill",
+  "version": "0.1.0",
+  "description": "Agent skill + MCP that turns a coding agent into a hackathon teammate: brief decoding, rubric scoring, scope cutting, demo planning.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "hackathon-skill": "./bin/hackathon-skill.mjs"
+  },
+  "scripts": {
+    "test": "node scripts/test.mjs"
+  },
+  "keywords": [
+    "agent-skills",
+    "ai-agents",
+    "claude-code",
+    "codex",
+    "cursor",
+    "hackathon",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}
